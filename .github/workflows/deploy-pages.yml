@@ -24,24 +24,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Prepare cloud sync
-        env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_PUBLISHABLE_KEY: ${{ secrets.SUPABASE_PUBLISHABLE_KEY }}
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          import os
-          template = Path('cloud-sync.template.js').read_text()
-          template = template.replace('__SUPABASE_URL__', os.environ.get('SUPABASE_URL',''))
-          template = template.replace('__SUPABASE_PUBLISHABLE_KEY__', os.environ.get('SUPABASE_PUBLISHABLE_KEY',''))
-          Path('cloud-sync.js').write_text(template)
-          index = Path('index.html').read_text()
-          tag = '<script src="cloud-sync.js"></script>'
-          if tag not in index:
-              index = index.replace('</body>', tag + '</body>')
-              Path('index.html').write_text(index)
-          PY
+      - name: Add navigation fallback
+        run: sed -i 's#</body>#<script src="nav-fix.js"></script></body>#' index.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
