@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My 8-Week Fitness Assistant</title>
+  <style>
+    *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f5f7f5;color:#172019}button,input,select{font:inherit}button{cursor:pointer;border:0}.app{max-width:1100px;margin:auto;padding:24px}.hero{background:#173b2a;color:#fff;border-radius:24px;padding:28px;margin-bottom:20px}.eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:12px;opacity:.75}.hero h1{font-size:36px;margin:8px 0}.hero p{margin:0;opacity:.85}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:16px 0}.card{background:#fff;border:1px solid #e4e9e5;border-radius:18px;padding:18px;box-shadow:0 5px 18px #173b2a0b}.metric{font-size:28px;font-weight:800;margin:5px 0}.muted{color:#68736c;font-size:13px}.section{margin-top:20px}.section h2{margin:0 0 12px}.two{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}.progress{height:12px;background:#e8ede9;border-radius:99px;overflow:hidden}.bar{height:100%;background:#3f8f62;border-radius:99px;width:0}.checkin{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.field label{display:block;font-size:13px;font-weight:650;margin-bottom:5px}.field input,.field select{width:100%;padding:11px;border:1px solid #d6ddd7;border-radius:10px;background:#fff}.primary{background:#2e7d52;color:#fff;padding:12px 16px;border-radius:10px;font-weight:700;margin-top:12px}.meal,.workout{padding:12px 0;border-bottom:1px solid #edf0ed}.meal:last-child,.workout:last-child{border-bottom:0}.tag{display:inline-block;padding:4px 8px;border-radius:99px;background:#edf6f0;color:#2e7d52;font-size:11px;font-weight:700}.coach{background:#172019;color:#fff}.coach input{background:#25332a;color:#fff;border:1px solid #3d4c43}.coach button{background:#fff;color:#172019}.answer{margin-top:12px;line-height:1.5;color:#dfe8e2}.notice{background:#fff8e7;border:1px solid #f0dfae;border-radius:14px;padding:13px;font-size:13px}.small{font-size:12px}@media(max-width:800px){.grid{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}.checkin{grid-template-columns:1fr 1fr}}@media(max-width:500px){.app{padding:14px}.hero h1{font-size:28px}.grid,.checkin{grid-template-columns:1fr 1fr}}
+  </style>
+</head>
+<body>
+<div class="app">
+  <header class="hero">
+    <div class="eyebrow">8-week transformation</div>
+    <h1>My Fitness Assistant</h1>
+    <p>Fat loss • muscle building • vegetarian • simple daily actions</p>
+  </header>
+
+  <div class="grid">
+    <div class="card"><div class="muted">Current weight</div><div class="metric" id="weightMetric">95 kg</div><div class="muted">Target 87–90 kg</div></div>
+    <div class="card"><div class="muted">Waist</div><div class="metric">36 in</div><div class="muted">Measure weekly</div></div>
+    <div class="card"><div class="muted">Calories</div><div class="metric">~2,100</div><div class="muted">Daily starting target</div></div>
+    <div class="card"><div class="muted">Protein</div><div class="metric">150–165 g</div><div class="muted">Daily target</div></div>
+  </div>
+
+  <section class="section card">
+    <h2>Today’s check-in</h2>
+    <div class="checkin">
+      <div class="field"><label>Weight (kg)</label><input id="weight" type="number" step="0.1" placeholder="95"></div>
+      <div class="field"><label>Steps</label><input id="steps" type="number" placeholder="2000"></div>
+      <div class="field"><label>Calories</label><input id="calories" type="number" placeholder="2100"></div>
+      <div class="field"><label>Protein (g)</label><input id="protein" type="number" placeholder="150"></div>
+      <div class="field"><label>Water (L)</label><input id="water" type="number" step="0.1" placeholder="2.5"></div>
+      <div class="field"><label>Sleep (hours)</label><input id="sleep" type="number" step="0.5" placeholder="7"></div>
+    </div>
+    <button class="primary" onclick="saveCheckin()">Save today</button>
+    <div id="saveMsg" class="muted" style="margin-top:8px"></div>
+  </section>
+
+  <section class="section two">
+    <div class="card">
+      <h2>8-week progress</h2>
+      <div class="muted">Weight goal progress</div>
+      <div class="progress" style="margin:10px 0"><div class="bar" id="weightBar"></div></div>
+      <div id="progressText" class="small">Start at 95 kg. Your first milestone is 90 kg.</div>
+      <div style="margin-top:18px"><strong>Walking progression</strong><p class="muted">Week 1: 3,000–4,000 steps/day → build gradually toward 8,000–10,000.</p></div>
+      <div><strong>Training</strong><p class="muted">4 morning sessions/week. Start light and focus on technique.</p></div>
+    </div>
+    <div class="card">
+      <h2>Today’s focus</h2>
+      <span class="tag">PRIORITY</span>
+      <p><strong>Protein first.</strong> Build every meal around a substantial vegetarian protein source.</p>
+      <p><strong>Walk after meals.</strong> Add short walks rather than trying to jump from 2,000 to 10,000 steps immediately.</p>
+      <p><strong>Sleep by routine.</strong> Aim for a consistent 7–8 hours.</p>
+    </div>
+  </section>
+
+  <section class="section two">
+    <div class="card">
+      <h2>Vegetarian meal framework</h2>
+      <div class="meal"><strong>Breakfast</strong><br><span class="muted">Greek yogurt/skyr + oats + berries + whey OR paneer/tofu breakfast.</span></div>
+      <div class="meal"><strong>Lunch</strong><br><span class="muted">Dal/rajma/chana + rice/roti + large vegetables + curd.</span></div>
+      <div class="meal"><strong>Snack</strong><br><span class="muted">Whey shake + fruit OR high-protein yogurt + small handful of nuts.</span></div>
+      <div class="meal"><strong>Dinner</strong><br><span class="muted">Tofu/paneer/soya + vegetables + measured rice/roti.</span></div>
+      <div class="notice" style="margin-top:12px">Eating out? Don't compensate by starving. Choose a protein-rich main, control portions, and return to the normal plan at the next meal.</div>
+    </div>
+    <div class="card">
+      <h2>4-day gym plan</h2>
+      <div class="workout"><strong>Day 1 · Upper</strong><br><span class="muted">Chest press • lat pulldown • seated row • shoulder press • curls • triceps</span></div>
+      <div class="workout"><strong>Day 2 · Lower</strong><br><span class="muted">Leg press • Romanian deadlift • leg curl • leg extension • calves • core</span></div>
+      <div class="workout"><strong>Day 3 · Upper</strong><br><span class="muted">Incline press • row • pulldown • lateral raise • curls • triceps</span></div>
+      <div class="workout"><strong>Day 4 · Lower</strong><br><span class="muted">Squat/leg press • hip hinge • split squat • leg curl • calves • core</span></div>
+      <p class="small muted">Begin with 2–3 sets each, mostly 8–12 reps. Add weight only when form is solid.</p>
+    </div>
+  </section>
+
+  <section class="section card coach">
+    <h2>Coach</h2>
+    <p class="muted" style="color:#b9c7bd">Ask for a simple decision based on today’s progress.</p>
+    <div class="field"><input id="coachInput" placeholder="e.g. I ate biryani at lunch. What should I do for dinner?"></div>
+    <button class="primary" onclick="coach()">Ask coach</button>
+    <div id="coachAnswer" class="answer"></div>
+  </section>
+
+  <p class="small muted" style="margin:20px 4px">This is a general fitness planning tool, not medical advice. A loss of 10 kg in 8 weeks is aggressive; the app treats 87–90 kg as the main target range and prioritises sustainable fat loss and muscle retention.</p>
+</div>
+<script>
+const key='fitnessAssistantCheckin';
+function load(){const d=JSON.parse(localStorage.getItem(key)||'null');if(!d)return;Object.entries(d).forEach(([k,v])=>{const el=document.getElementById(k);if(el)el.value=v});if(d.weight){document.getElementById('weightMetric').textContent=d.weight+' kg';const pct=Math.max(0,Math.min(100,((95-d.weight)/5)*100));document.getElementById('weightBar').style.width=pct+'%';document.getElementById('progressText').textContent=d.weight<=90?`Great — you’ve reached the first milestone at ${d.weight} kg.`:`Current ${d.weight} kg. First milestone: 90 kg.`}}
+function saveCheckin(){const ids=['weight','steps','calories','protein','water','sleep'];const d={};ids.forEach(id=>d[id]=document.getElementById(id).value);localStorage.setItem(key,JSON.stringify(d));load();document.getElementById('saveMsg').textContent='Saved on this device ✓'}
+function coach(){const q=document.getElementById('coachInput').value.toLowerCase();let a='';if(q.includes('biryani')||q.includes('outside')||q.includes('restaurant'))a='Keep the rest of today simple: prioritise tofu/paneer/soya or Greek yogurt for protein, plenty of vegetables, water, and avoid turning one high-calorie meal into a full high-calorie day. A 15–20 minute easy walk is a good add-on.';else if(q.includes('miss')||q.includes('workout'))a='Do not double up or punish yourself. Resume the next planned session and keep your food and steps consistent today.';else if(q.includes('hungry'))a='Choose a high-protein, high-volume option: Greek yogurt/skyr, tofu, soya, dal with vegetables, or a whey shake plus fruit. Drink water first and reassess after 10 minutes.';else if(q.includes('steps'))a='Increase gradually. If you are around 2,000 now, aim for 3,000–4,000 first, then add roughly 500–1,000 steps every few days as comfortable.';else a='Your priorities today are simple: hit your protein target, stay around your calorie target, walk more than your baseline, drink 2.5–3 L water, and get 7–8 hours of sleep.';document.getElementById('coachAnswer').textContent=a}
+load();
+</script>
+</body>
+</html>
