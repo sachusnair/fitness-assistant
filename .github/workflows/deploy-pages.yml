@@ -24,8 +24,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Add navigation fallback
-        run: sed -i 's#</body>#<script src="nav-fix.js"></script></body>#' index.html
+      - name: Add navigation and app enhancements
+        run: sed -i 's#</body>#<script src="nav-fix.js"></script><script src="app-enhance.js"></script></body>#' index.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
